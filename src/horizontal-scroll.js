@@ -24,7 +24,7 @@ const HorizontalTranslateContainer = styled.div.attrs(({ translateX }) => ({
   will-change: transform;
 `;
 
-const calcDynamicHeight = objectWidth => {
+const calcDynamicHeight = (objectWidth) => {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   return objectWidth - vw + vh + 150;
@@ -39,7 +39,9 @@ const handleDynamicHeight = (ref, setDynamicHeight) => {
 const applyScrollListener = (ref, setTranslateX) => {
   window.addEventListener("scroll", () => {
     const offsetTop = -ref.current.offsetTop;
-    setTranslateX(offsetTop);
+    if (offsetTop) {
+      setTranslateX(offsetTop);
+    }
   });
 };
 
